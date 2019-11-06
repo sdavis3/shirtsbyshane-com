@@ -1,0 +1,13 @@
+{
+  "extensions": [
+    "ms-vscode.azure-account",
+    "ms-vscode.azurecli",
+    "ms-azuretools.vscode-azurestorage",
+    "coenraads.bracket-pair-colorizer",
+    "streetsidesoftware.code-spell-checker",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "mohsen1.prettify-json",
+    "vscode-icons-team.vscode-icons"
+  ]
+}
