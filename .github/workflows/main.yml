@@ -27,4 +27,4 @@ jobs:
       with:
         azcliversion: latest
         inlinescript: |
-          az cdn endpoint purge -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.ENDPOINT_NAME }} --profile-name ${{ secrets.PROFILE_NAME }} --content-paths '*'
+          az cdn endpoint purge -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.ENDPOINT_NAME }} --profile-name ${{ secrets.PROFILE_NAME }} --content-paths '/*'
