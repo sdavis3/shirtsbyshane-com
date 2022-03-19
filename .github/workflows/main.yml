@@ -1,30 +1,32 @@
 name: Publish Static Web App to Azure Blob Storage
 
-on: push
+on: 
+  push:
+    branches: [ master ]
 
 jobs:
-  build_and_publish:
+  build:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout the repo
-      uses: actions/checkout@v1
-
+      uses: actions/checkout@v2
     - name: Login to Azure
       uses: Azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Publish app
-      uses: Azure/cli@v1.0.0
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
       with:
-        azcliversion: latest
         inlineScript: |
-          az storage blob upload-batch -s $GITHUB_WORKSPACE/website -d \$web --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --auth-mode key
-  
-    - name: Purge CDN
-      uses: Azure/cli@v1.0.0
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/website --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --auth-mode key
+    - name: Purge CDN endpoint
+      uses: azure/CLI@v1
       with:
-        azcliversion: latest
         inlinescript: |
           az cdn endpoint purge -g ${{ secrets.RESOURCE_GROUP_NAME }} -n ${{ secrets.ENDPOINT_NAME }} --profile-name ${{ secrets.PROFILE_NAME }} --content-paths '/*'
+
+# Azure logout
+    - name: logout
+      run: |
+            az logout
+      if: always()
