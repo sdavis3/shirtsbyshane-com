@@ -20,7 +20,7 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az storage blob upload-batch -s $GITHUB_WORKSPACE/website -d \$web --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }}
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/website -d \$web --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --auth-mode login
   
     - name: Purge CDN
       uses: Azure/cli@v1.0.0
