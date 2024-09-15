@@ -6,3 +6,10 @@ Website for shirtsbyshane.com
   - [ ] personalize dotfiles
 - Site
   - [ ] update footer to include commmit and timestamp
+
+## Maintenance:
+```
+az ad sp create-for-rbac --name "myML" --role contributor \
+                            --scopes /subscriptions/<subscription-id>/resourceGroups/<group-name> \
+                            --json-auth
+```
